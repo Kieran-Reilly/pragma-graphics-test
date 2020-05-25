@@ -6,8 +6,78 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
-<body>
+    <script type="module" src="./node_modules/pragma-graphics/index.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
+</head>
+<style>
+    /*html, body {*/
+    /*    padding: 1rem;*/
+    /*    margin: 0;*/
+    /*    width: 100vw;*/
+    /*    height: 100vh;*/
+    /*}*/
+
+    pr-graphics {
+        display: block;
+        width: 600px;
+        height: 400px;
+        position: relative;
+    }
+
+    pr-graphics canvas {
+        position: absolute;
+        top: 0;
+        left:0;
+        right: 0;
+        bottom: 0;
+    }
+
+    pr-legend {
+        position: absolute;
+        top:100px;
+        left:600px;
+    }
+    #legendList {
+        padding: 5px;
+        margin: 5px;
+        width: fit-content;
+        list-style-type: none;
+    }
+    .legendItem {
+        padding: 2px 0 2px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .legendItem span{
+        margin: 0 4px 0 4px;
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        align-self: center;
+    }
+    .legendItem .titleDiv{
+        margin: 0 4px 0 4px;
+        flex:1
+    }
+    .legendItem .valueDiv{
+        margin: 0 4px 0 4px;
+    }
+</style>
+<body>
+<pragma-graphics id="pr-graphics"></pragma-graphics>
+<pr-chart-pie id="donut" for="pr-graphics" arc-padding="5" width="20" data-title="code" data-value="value" total-size="30"></pr-chart-pie>
+<pr-legend id="legend" for="donut">
+    <ul id="legendList">
+        <template id="legendTemplate">
+            <li id="__id__" class="legendItem">
+                <span class="colorReference"></span>
+                <div class="titleDiv" data-title="__title__">__property__</div>
+                <div class="valueDiv" data-value="__value__">__property__</div>
+            </li>
+        </template>
+    </ul>
+</pr-legend>
 </body>
 </html>
